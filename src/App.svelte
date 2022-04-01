@@ -1,6 +1,15 @@
 <script>
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
+  import Tabs from './shared/Tabs.svelte';
+
+  let items = ['Current Polls', 'Add New Poll'];
+  let activeItems = 'Current Polls';
+
+  // event
+  const changeTabs = (e) => {
+    activeItems = e.detail;
+  };
 </script>
 
 <!-- header -->
@@ -9,6 +18,13 @@
 <!-- main -->
 <main>
   <h1>Hello Hinjas</h1>
+  <Tabs {items} {activeItems} on:changeTabs={changeTabs} />
+
+  {#if activeItems === 'Current Polls'}
+    <p>Hello Current Polls</p>
+  {:else if activeItems === 'Add New Poll'}
+    <p>Hello Add New Polls</p>
+  {/if}
 </main>
 
 <!-- footer -->
