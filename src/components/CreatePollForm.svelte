@@ -50,6 +50,7 @@
   <div class="form-field">
     <label for="question">Poll question:</label>
     <input
+      autocomplete="off"
       type="text"
       name="question"
       id="question"
@@ -62,6 +63,7 @@
   <div class="form-field">
     <label for="ansver-a">Answer A:</label>
     <input
+      autocomplete="off"
       type="text"
       name="answer-a"
       id="answer-a"
@@ -74,6 +76,7 @@
   <div class="form-field">
     <label for="answer-b">Answer B:</label>
     <input
+      autocomplete="off"
       type="text"
       name="answer-b"
       id="answer-b"
