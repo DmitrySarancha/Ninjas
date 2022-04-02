@@ -2,6 +2,7 @@
   import Header from './components/Header.svelte';
   import Footer from './components/Footer.svelte';
   import CreatePollForm from './components/CreatePollForm.svelte';
+  import PollList from './components/PollList.svelte';
   import Tabs from './shared/Tabs.svelte';
 
   let items = ['Current Polls', 'Add New Poll'];
@@ -12,6 +13,17 @@
     activeItems = e.detail;
   };
 
+  // Polls
+  let polls = [
+    {
+      id: 1,
+      question: 'Pyton or JavaScript',
+      answerA: 'Pyton',
+      answerB: 'JavaScript',
+      voutesA: 5,
+      voutesB: 15,
+    },
+  ];
 
   // custom event
   const formChange = (e) => {
@@ -31,7 +43,7 @@
   <Tabs {items} {activeItems} on:changeTabs={changeTabs} />
 
   {#if activeItems === 'Current Polls'}
-    <p>Hello Current Polls</p>
+    <PollList {polls} />
   {:else if activeItems === 'Add New Poll'}
     <CreatePollForm on:formChange={formChange} />
   {/if}
