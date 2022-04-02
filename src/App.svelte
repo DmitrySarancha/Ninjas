@@ -18,7 +18,6 @@
 
 <!-- main -->
 <main>
-  <h1>Hello Hinjas</h1>
   <Tabs {items} {activeItems} on:changeTabs={changeTabs} />
 
   {#if activeItems === 'Current Polls'}
