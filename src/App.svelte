@@ -11,6 +11,16 @@
   const changeTabs = (e) => {
     activeItems = e.detail;
   };
+
+
+  // custom event
+  const formChange = (e) => {
+    const poll = e.detail;
+    polls = [poll, ...polls];
+
+    // close tab 'Add New Poll'
+    activeItems = 'Current Polls';
+  };
 </script>
 
 <!-- header -->
@@ -23,7 +33,7 @@
   {#if activeItems === 'Current Polls'}
     <p>Hello Current Polls</p>
   {:else if activeItems === 'Add New Poll'}
-    <CreatePollForm />
+    <CreatePollForm on:formChange={formChange} />
   {/if}
 </main>
 
