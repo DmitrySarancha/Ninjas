@@ -1,4 +1,5 @@
 <script>
+  import Button from '../shared/Button.svelte';
   let fields = {
     question: '',
     'answer-a': '',
@@ -41,7 +42,7 @@
     />
   </div>
 
-  <button>Add Poll</button>
+  <Button flat={true}>Add Poll</Button>
 </form>
 
 <style>
