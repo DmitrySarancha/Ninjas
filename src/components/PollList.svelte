@@ -7,7 +7,6 @@
   {#each polls as item (item.id)}
     <PollDetails {item} />
   {/each}
-  <h1>Pollll</h1>
 </div>
 
 <style>
