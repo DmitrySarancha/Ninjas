@@ -1,4 +1,5 @@
 <script>
+  import { pollsStore } from '../store/store';
   import { createEventDispatcher } from 'svelte';
   import Button from '../shared/Button.svelte';
 
@@ -50,7 +51,11 @@
         votesB: 0,
         id: Math.round(Math.random() * 100),
       };
-      dispatch('formChange', poll);
+      // store
+      pollsStore.update((data) => {
+        return [poll, ...data];
+      });
+      dispatch('formChange');
     }
   };
 </script>
