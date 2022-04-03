@@ -13,40 +13,10 @@
     activeItems = e.detail;
   };
 
-  // Polls
-  let polls = [
-    {
-      id: 1,
-      question: 'Pyton or JavaScript',
-      answerA: 'Pyton',
-      answerB: 'JavaScript',
-      votesA: 5,
-      votesB: 15,
-    },
-  ];
-
   // custom event
   const formChange = (e) => {
-    const poll = e.detail;
-    polls = [poll, ...polls];
-
     // close tab 'Add New Poll'
     activeItems = 'Current Polls';
-  };
-
-  const hedleVotes = (e) => {
-    const { option, id } = e.detail;
-
-    const copiedPolls = [...polls];
-    const upvotePoll = copiedPolls.find((poll) => poll.id === id);
-    if (option === 'a') {
-      upvotePoll.votesA++;
-    }
-    if (option === 'b') {
-      upvotePoll.votesB++;
-    }
-
-    polls = copiedPolls;
   };
 </script>
 
@@ -58,7 +28,7 @@
   <Tabs {items} {activeItems} on:changeTabs={changeTabs} />
 
   {#if activeItems === 'Current Polls'}
-    <PollList {polls} on:votes={hedleVotes} />
+    <PollList />
   {:else if activeItems === 'Add New Poll'}
     <CreatePollForm on:formChange={formChange} />
   {/if}
