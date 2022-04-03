@@ -14,5 +14,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    border-radius: 8px;
   }
 </style>
