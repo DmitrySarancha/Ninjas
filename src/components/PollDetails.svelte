@@ -7,7 +7,8 @@
 
   // reactive volue
   $: totalVotes = item.votesA + item.votesB;
-
+  $: percentA = Math.round((100 / totalVotes) * item.votesA);
+  $: percentB = Math.round((100 / totalVotes) * item.votesB);
   // handelVotes
   const handelVotes = (option, id) => {
     dispatch('votes', { option, id });
@@ -20,12 +21,12 @@
 
     <p>Total Voutes: {totalVotes}</p>
     <div class="answer" on:click={() => handelVotes('a', item.id)}>
-      <div class="percent percent-a" />
-      <span>{item.answerA}: {item.votesA}</span>
+      <div style:width="{percentA}%" class="percent percent-a" />
+      <span>{item.answerA} ({item.votesA})</span>
     </div>
     <div class="answer" on:click={() => handelVotes('b', item.id)}>
-      <div class="percent percent-b" />
-      <span>{item.answerB}: {item.votesB}</span>
+      <div style:width="{percentB}%" class="percent percent-b" />
+      <span>{item.answerB} ({item.votesB})</span>
     </div>
   </div>
 </Card>
@@ -54,5 +55,18 @@
   span {
     display: inline-block;
     padding: 10px 20px;
+  }
+  .percent {
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+  }
+  .percent-a {
+    border-left: 3px solid #d91b42;
+    background: rgba(217, 27, 66, 0.2);
+  }
+  .percent-b {
+    border-left: 3px solid #45c496;
+    background: rgba(69, 196, 150, 0.2);
   }
 </style>
