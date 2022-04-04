@@ -1,4 +1,5 @@
 <script>
+  import { tweened } from 'svelte/motion';
   import { pollsStore } from '../store/store';
   import Card from '../shared/Card.svelte';
   import Button from '../shared/Button.svelte';
@@ -7,8 +8,16 @@
 
   // reactive value
   $: totalVotes = item.votesA + item.votesB;
-  $: percentA = Math.round((100 / totalVotes) * item.votesA);
-  $: percentB = Math.round((100 / totalVotes) * item.votesB);
+  $: percentA = Math.round((100 / totalVotes) * item.votesA) || 0; // NaN or 0
+  $: percentB = Math.round((100 / totalVotes) * item.votesB) || 0; // NaN or 0
+
+  // tweened store
+  let tweenedA = tweened(0);
+  let tweenedB = tweened(0);
+
+  // tweened percent
+  $: tweenedA.set(percentA);
+  $: tweenedB.set(percentB);
 
   // handelVotes
   const handelVotes = (option, id) => {
@@ -40,11 +49,11 @@
 
     <p>Total Voutes: {totalVotes}</p>
     <div class="answer" on:click={() => handelVotes('a', item.id)}>
-      <div style:width="{percentA}%" class="percent percent-a" />
+      <div style:width="{$tweenedA}%" class="percent percent-a" />
       <span>{item.answerA} ({item.votesA})</span>
     </div>
     <div class="answer" on:click={() => handelVotes('b', item.id)}>
-      <div style:width="{percentB}%" class="percent percent-b" />
+      <div style:width="{$tweenedB}%" class="percent percent-b" />
       <span>{item.answerB} ({item.votesB})</span>
     </div>
     <div class="delete">
